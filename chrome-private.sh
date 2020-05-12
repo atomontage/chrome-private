@@ -2,24 +2,23 @@
 #
 # This script will spawn a new Chrome process restricted to a profile that
 # is created on demand and (optionally) deleted on exit. If a root profile
-# directory is given, then it will be used as the template for the newly
-# created profile.
+# directory is given, it will be used as the template for the newly created
+# profile.
 #
 # NOTES:
 #
 # Chrome spawning takes place irrespective of any currently running Chrome
-# processes. The script will always spawn a new Chrome process, rather than
-# a new window/tab belonging to an existing Chrome process.
+# processes. The script will always spawn a new Chrome process.
 #
-# If a root profile directory is not configured/passed as an argument, the
+# If a root profile directory is not configured/passed-in as an argument, the
 # created profile will be a fresh, first-time profile that does not contain
 # any configuration data or extensions that may be present in a different
 # profile for the same installed Chrome browser.
 #
-# To create a root profile, execute `chrome-private.sh --name root --keep',
+# To create a root profile, execute `chrome-private.sh --name name --keep',
 # and after installing extensions and modifying browser configuration, you
-# can copy/rename the root directory and set it as ROOT_PROFILE_DIR (or
-# pass it as an argument with --root-profile).
+# can copy/rename its directory and set it as ROOT_PROFILE_DIR (or pass it
+# as an argument with --root-profile).
 #
 # This is free and unencumbered software released into the public domain.
 # xristos@sdf.org

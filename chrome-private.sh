@@ -109,7 +109,6 @@ function usage {
   echo
   echo -e "  --incognito     start Chrome in incognito mode"
   echo -e "  --root-profile  use given directory as root profile directory"
-  echo -e "                  (needs to exist and start with \"chrome\")"
   echo -e "  --profile dir   use given directory as profile directory (needs to exist)"
   echo -e "                  (--root-profile, --name and --temp-name are ignored)"
   echo -e "  --proxy         if given, Chrome will use a proxy (default or specified)"
@@ -216,16 +215,7 @@ while :; do
       if [ "$2" ] && [ "$2" != "--" ]; then
         ROOT_PROFILE_DIR="$2"
         basename="$(basename "${ROOT_PROFILE_DIR}")"
-
-        case "${basename}" in
-          chrome*)
-            shift
-            ;;
-          *)
-            err "root_profile directory needs to start with \"chrome\""
-            exit 1
-            ;;
-        esac
+        shift
       else
         err "--root-profile requires a profile directory"
         exit 1

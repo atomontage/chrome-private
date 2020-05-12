@@ -30,17 +30,18 @@ requirements.
 + Enables user-specified proxy and incognito mode through command-line switches
 
 * Usage
-First, make sure CHROME variable is correct. You can set it either directly
-in the script or in ~/.chrome-private.rc. If you are on macOS, you will need GNU
-mktemp (gmktemp) which you can get by installing coreutils from MacPorts or
-Homebrew. You will also need to set CHROME to the full path of the Google Chrome.app
-(or canary) binary. Example:
+First, make sure CHROME variable is correct. You can set it directly in the
+script itself or in ~/.chrome-private.rc. If you are on macOS, you will need
+GNU mktemp (gmktemp) which you can get by installing coreutils from MacPorts or
+Homebrew. You will also need to set CHROME to the full path of the
+Google Chrome.app (or canary) binary. Example:
 
 CHROME="${HOME}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
-If RAMDISK is set, it will be used instead of TMP. Using a ramdisk is highly
-recommended if heavy usage is expected (I go through hundreds of disposable
-profiles a day).
+The default value should be ok on Linux.
+
+If RAMDISK is set, it will be used instead of TMP (highly recommended for heavy
+usage).
 
 Sample session:
 

@@ -19,12 +19,15 @@ configurations and ways of browsing.
 
 * Features
 
-+ Disables caches, Flash, referrers
++ Disables caches, Flash, +referrers+
 
 + Disables 3D APIs / WebGL, GPU acceleration by default while allowing them to be
   re-enabled through command-line switches.
 
 + Enables user-specified proxy and incognito mode through command-line switches
+
+Disabling referrers through a command-line switch seems to no longer do anything
+in Chrome, even though the switch is recognized. Use an extension like uMatrix.
 
 * Usage
 First, make sure CHROME variable is correct. The default value should be ok on

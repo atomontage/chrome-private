@@ -5,7 +5,7 @@ chrome-private.sh is a shell wrapper that simplifies using Google Chrome ephemer
 The core concept is the disposable profile that is created on demand and (optionally)
 discarded on exit. Executing Chrome through the wrapper allows clear segmentation
 and isolation of browsing sessions into directories that can be copied / moved /
-kept around and deleted when no longer required.
+kept around / deleted when no longer required.
 
 Additionally, profiles can be preconfigured with user settings / 3rd party
 extensions and used as templates.
@@ -13,9 +13,9 @@ extensions and used as templates.
 I initially created chrome-private.sh in order to get some semblance of control over
 my browsing habits and be able to better manage the enormous volume of information
 I found myself exposed to every day. Now, it has become invaluable as it encourages
-me to set clear limits, while also conveniently keeping all state related to a
-specific area of research in one profile directory and also speeding up experimenting
-with multiple widely-disparate configurations and ways of browsing.
+me to set clear limits, while conveniently keeping all state related to a specific
+area of research isolated and also speeding up experimenting with widely-disparate
+configurations and ways of browsing.
 
 * Features
 

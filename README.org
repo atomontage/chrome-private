@@ -36,7 +36,9 @@ If you are on macOS, you will need GNU mktemp (gmktemp) which you can get by
 installing coreutils from MacPorts or Homebrew. You will also need to set CHROME
 to the full path of the Google Chrome.app (or canary) binary. Example:
 
+#+BEGIN_SRC shell-script
 CHROME="${HOME}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+#+END_SRC
 
 If RAMDISK is set, it will be used instead of TMP (highly recommended).
 

@@ -60,16 +60,18 @@ fi
 #
 
 
-CHROME_ARGS=(--disable-bundled-ppapi-flash --disable-offline-load-stale-cache
+CHROME_ARGS=(--disable-offline-load-stale-cache
              --disk-cache-size=1 --media-cache-size=1 --disk-cache-dir=/dev/null
              --no-first-run --no-referrers --save-page-as-mhtml)
 
+CHROME_NO_FLASH_ARGS=(--disable-bundled-ppapi-flash)
 CHROME_NO_GPU_ARGS=(--disable-gpu)
 CHROME_NO_3D_ARGS=(--disable-3d-apis --disable-webgl)
 
 keep=0
 delete=0
 incognito=0
+use_flash=0
 use_gpu=0
 use_3d=0
 use_proxy=0
@@ -92,7 +94,7 @@ fi
 
 
 function usage {
-  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--gpu] [--3d] [--incognito] [--root-profile dir] [--profile dir] [--proxy (${PROXY})] chrome-arguments"
+  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--flash] [--gpu] [--3d] [--incognito] [--root-profile dir] [--profile dir] [--proxy (${PROXY})] chrome-arguments"
   echo -e "  --name          name of created profile directory"
   echo -e "                  this will override --temp-name if given"
   echo -e "  --temp-name     this will be passed to mktemp(1) to generate a"
@@ -103,6 +105,7 @@ function usage {
   echo -e "  --delete        delete rather than rename profile directory"
   echo -e "                  (ignored with --keep / --profile)"
   echo
+  echo -e "  --flash         enable Flash"
   echo -e "  --gpu           enable gpu acceleration"
   echo -e "  --3d            enable WebGL / 3D APIs"
   echo
@@ -182,6 +185,9 @@ while :; do
       ;;
     --delete)
       delete=1
+      ;;
+    --flash)
+      use_flash=1
       ;;
     --gpu)
       use_gpu=1
@@ -293,6 +299,12 @@ if [ "${incognito}" -eq 1 ]; then
   msg "Incognito mode enabled"
 
   MY_ARGS+=(--incognito)
+fi
+
+if [ "${use_flash}" -eq 0 ]; then
+  CHROME_ARGS=("${CHROME_ARGS[@]}" "${CHROME_NO_FLASH_ARGS[@]}")
+else
+  msg "Flash enabled"
 fi
 
 if [ "${use_gpu}" -eq 0 ]; then

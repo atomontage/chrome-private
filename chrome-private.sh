@@ -54,6 +54,9 @@ fi
 # a ramdisk on macOS.
 : ${RAMDISK:=}
 
+# Remote debugging port
+: ${DEBUG_PORT:=}
+
 
 #
 # End of user configuration
@@ -92,7 +95,7 @@ fi
 
 
 function usage {
-  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--gpu] [--3d] [--incognito] [--root-profile dir] [--profile dir] [--proxy (${PROXY})] chrome-arguments"
+  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--gpu] [--3d] [--incognito] [--root-profile dir] [--profile dir] [--port port] [--proxy (${PROXY})] -- chrome-arguments"
   echo -e "  --name          name of created profile directory"
   echo -e "                  this will override --temp-name if given"
   echo -e "  --temp-name     this will be passed to mktemp(1) to generate a"
@@ -111,6 +114,7 @@ function usage {
   echo -e "  --profile dir   use given directory as profile directory (needs to exist)"
   echo -e "                  (--root-profile, --name and --temp-name are ignored)"
   echo -e "  --proxy         if given, Chrome will use a proxy (default or specified)"
+  echo -e "  --port          use given port as remote debugging port"
   echo
 }
 
@@ -236,6 +240,12 @@ while :; do
         shift
       fi
       ;;
+    --port)
+      if [ "$2" ] && [ "$2" != "--" ]; then
+        DEBUG_PORT="$2"
+        shift
+      fi
+      ;;
     --)
       shift
       break
@@ -305,6 +315,11 @@ if [ "${use_3d}" -eq 0 ]; then
   CHROME_ARGS=("${CHROME_ARGS[@]}" "${CHROME_NO_3D_ARGS[@]}")
 else
   msg "3D APIs enabled"
+fi
+
+if [ "${DEBUG_PORT}" ]; then
+  MY_ARGS+=(--remote-debugging-port="${DEBUG_PORT}")
+  msg "Remote debugging port: ${DEBUG_PORT}"
 fi
 
 

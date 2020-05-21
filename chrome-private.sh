@@ -65,7 +65,7 @@ fi
 
 CHROME_ARGS=(--disable-bundled-ppapi-flash --disable-offline-load-stale-cache
              --disk-cache-size=1 --media-cache-size=1 --disk-cache-dir=/dev/null
-             --no-first-run --no-referrers --save-page-as-mhtml)
+             --no-first-run --no-referrers --save-page-as-mhtml --no-default-browser-check)
 
 CHROME_NO_GPU_ARGS=(--disable-gpu)
 CHROME_NO_3D_ARGS=(--disable-3d-apis --disable-webgl)

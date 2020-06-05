@@ -37,6 +37,9 @@ if [ -f "${CONFIG}" ]; then
   source "${CONFIG}"
 fi
 
+# All of the following user configuration variables can be set in
+# ~/.chrome-private.rc
+
 : ${CHROME:=google-chrome}
 : ${TMP:=/tmp}
 

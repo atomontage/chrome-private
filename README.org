@@ -3,7 +3,7 @@
 chrome-private.sh is a shell wrapper that simplifies using Google Chrome ephemerally.
 
 The core concept is the disposable profile that is created on demand and (optionally)
-discarded on exit. Executing Chrome through the wrapper allows clear segmentation
+discarded on exit. Executing Chrome through the wrapper enables clear segmentation
 and isolation of browsing sessions into directories that can be copied / moved /
 kept around / deleted when no longer required.
 

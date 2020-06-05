@@ -134,8 +134,8 @@ function err {
 }
 
 function setup {
-  # Optional, executed before everything else when --profile is not given
-  # Currently used to setup the ram disk (if configured)
+  # Optional, executed first when --profile is not given.
+  # Currently used to setup the ram disk (if configured).
   if [ -d "${RAMDISK}" ]; then
     if [ -d "${ROOT_PROFILE_DIR}" ]; then
       if [ ! -d "${RAMDISK}/${basename}" ]; then
@@ -200,7 +200,7 @@ while :; do
       incognito=1
       ;;
     --name)
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         profile_name="$2"
         shift
       else
@@ -209,7 +209,7 @@ while :; do
       fi
       ;;
     --temp-name)
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         PROFILE_MKTEMP="$2"
         shift
       else
@@ -218,7 +218,7 @@ while :; do
       fi
       ;;
     --root-profile)
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         ROOT_PROFILE_DIR="$2"
         basename="$(basename "${ROOT_PROFILE_DIR}")"
         shift
@@ -228,7 +228,7 @@ while :; do
       fi
       ;;
     --profile)
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         profile="$2"
         shift
       else
@@ -238,13 +238,13 @@ while :; do
       ;;
     --proxy)
       use_proxy=1
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         PROXY="$2"
         shift
       fi
       ;;
     --port)
-      if [ "$2" ] && [ "$2" != "--" ]; then
+      if [ "$2" ] && [[ "$2" != --* ]]; then
         DEBUG_PORT="$2"
         shift
       fi

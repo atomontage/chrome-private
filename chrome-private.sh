@@ -40,25 +40,25 @@ fi
 # All of the following user configuration variables can be set in
 # ~/.chrome-private.rc
 
-: ${CHROME:=google-chrome}
-: ${TMP:=/tmp}
+: "${CHROME:=google-chrome}"
+: "${TMP:=/tmp}"
 
 # A root chrome profile directory, if it exists it will be used as a template
-: ${ROOT_PROFILE_DIR:=}
+: "${ROOT_PROFILE_DIR:=}"
 
 # GNU mktemp is required, set this to gmktemp (coreutils) on macOS
-: ${MKTEMP:=mktemp}
-: ${PROFILE_MKTEMP:=chrome.priv.prof_XXXXXXXXXX}
+: "${MKTEMP:=mktemp}"
+: "${PROFILE_MKTEMP:=chrome.priv.prof_XXXXXXXXXX}"
 
-: ${PROXY=socks5://127.0.0.1:5060}
+: "${PROXY=socks5://127.0.0.1:5060}"
 
 # Using a ramdisk rather than TMP is a good idea, but doubly so if you're going
 # to go heavy on number of disposable profiles. hdiutil can be used to create
 # a ramdisk on macOS.
-: ${RAMDISK:=}
+: "${RAMDISK:=}"
 
 # Remote debugging port
-: ${DEBUG_PORT:=}
+: "${DEBUG_PORT:=}"
 
 
 #
@@ -125,12 +125,12 @@ function msg {
   if [ "${color}" -eq 1 ]; then
     printf "${start_color}$1${end_color}\n"
   else
-    printf "$1\n"
+    printf "%s\n" "$1"
   fi
 }
 
 function err {
-  echo "Error: $@" >&2
+  echo "Error: $*" >&2
 }
 
 function setup {

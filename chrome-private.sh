@@ -98,7 +98,7 @@ fi
 
 
 function usage {
-  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--gpu] [--3d] [--incognito] [--root-profile dir] [--profile dir] [--port port] [--proxy (${PROXY})] -- chrome-arguments"
+  echo "Usage: $0 [--name name] [--temp-name (${PROFILE_MKTEMP})] [--keep] [--delete] [--gpu] [--3d] [--incognito] [--chrome-bin executable] [--root-profile dir] [--profile dir] [--port port] [--proxy (${PROXY})] -- chrome-arguments"
   echo -e "  --name          name of created profile directory"
   echo -e "                  this will override --temp-name if given"
   echo -e "  --temp-name     this will be passed to mktemp(1) to generate a"
@@ -113,6 +113,7 @@ function usage {
   echo -e "  --3d            enable WebGL / 3D APIs"
   echo
   echo -e "  --incognito     start Chrome in incognito mode"
+  echo -e "  --chrome-bin    use given Chrome executable"
   echo -e "  --root-profile  use given directory as root profile directory"
   echo -e "  --profile dir   use given directory as profile directory (needs to exist)"
   echo -e "                  (--root-profile, --name and --temp-name are ignored)"
@@ -214,6 +215,15 @@ while :; do
         shift
       else
         err "--temp-name requires an argument"
+        exit 1
+      fi
+      ;;
+    --chrome-bin)
+      if [ "$2" ] && [[ "$2" != --* ]]; then
+        CHROME="$2"
+        shift
+      else
+        err "--chrome-bin requires an executable"
         exit 1
       fi
       ;;

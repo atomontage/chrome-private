@@ -1,6 +1,6 @@
 [[https://unlicense.org/][https://img.shields.io/badge/license-Unlicense-blue.svg]]
 
-chrome-private.sh is a shell wrapper that simplifies using Google Chrome ephemerally.
+~chrome-private.sh~ is a shell wrapper that simplifies using Google Chrome ephemerally.
 
 The core concept is the disposable profile that is created on demand and (optionally)
 discarded on exit. Executing Chrome through the wrapper enables clear segmentation
@@ -10,11 +10,12 @@ kept around / deleted when no longer required.
 Additionally, profiles can be preconfigured with user settings / 3rd party
 extensions and used as templates.
 
-I initially created chrome-private.sh in order to get some semblance of control over
-my browsing habits and be able to better manage the enormous volume of information
-I found myself exposed to every day. Now, it has become invaluable as it encourages
-me to set clear limits, while conveniently keeping all state related to a specific
-area of research isolated and also speeding up experimenting with widely-disparate
+I initially created ~chrome-private.sh~ in order to get some semblance of
+control over my browsing habits and be able to better manage the enormous
+volume of information I found myself exposed to every day. Now, it has
+become invaluable as it encourages me to set clear limits, while
+conveniently keeping all state related to a specific area of research
+isolated and also speeding up experimenting with widely-disparate
 configurations and ways of browsing.
 
 * Features
@@ -31,16 +32,16 @@ in Chrome, even though the switch is recognized. Use an extension like uMatrix.
 
 * Usage
 First, make sure CHROME variable is correct. The default value should be ok on
-Linux. You can set it directly in the script itself or in ~/.chrome-private.rc.
-If you are on macOS, you will need GNU mktemp (gmktemp) which you can get by
+Linux. You can set it directly in the script itself or in ~$HOME/.chrome-private.rc~.
+If you are on macOS, you will need GNU mktemp (~gmktemp~) which you can get by
 installing coreutils from MacPorts or Homebrew. You will also need to set CHROME
-to the full path of the Google Chrome.app (or canary) binary. Example:
+to the full path of the ~Google Chrome.app~ (or canary) binary. Example:
 
 #+BEGIN_SRC shell-script
 CHROME="${HOME}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 #+END_SRC
 
-If RAMDISK is set, it will be used instead of TMP (highly recommended).
+If ~RAMDISK~ is set, it will be used instead of ~TMP~ (highly recommended).
 
 Sample session:
 

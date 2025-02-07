@@ -5,6 +5,10 @@
 # directory is given, it will be used as the template for the newly created
 # profile.
 #
+# Requirements:
+#
+#   GNU coreutils
+#
 # NOTES:
 #
 # Chrome spawning takes place irrespective of any currently running Chrome
@@ -157,8 +161,7 @@ function cleanup {
         mv "${profile}" "${profile}.deleted"
         msg "Renamed: ${profile}"
       else
-        rm -rf "${profile}"
-        msg "Deleted: ${profile}"
+        rm -rf "${profile}" && msg "Deleted: ${profile}"
       fi
     fi
   else
@@ -294,6 +297,7 @@ else
   if [ "${profile_name}" ]; then
     profile="${profile_name}"
   else
+    msg "Creating temporary profile in ${TMP}"
     profile="$("${MKTEMP}" -d -p "${TMP}" "${PROFILE_MKTEMP}")"
   fi
 
